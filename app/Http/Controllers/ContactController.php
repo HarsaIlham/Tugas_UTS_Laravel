@@ -2,23 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use Faker\Factory as Faker;
 
 
 class Contactcontroller extends Controller
 {
     public function contact(){
-        $contacts = [];
-        $faker = Faker::create();
-        for ($i = 1; $i <= 10; $i++) {
-            $contacts[] = [
-                'name' => $faker->name,
-                'email' => $faker->unique()->safeEmail,
-                'phone' => $faker->phoneNumber
-            ];
-        }
-        return view('contact.index',['contacts'=>$contacts]);
+        $users = User::all();
+        return view('contact.index',['users'=>$users]);
     }    
+
+    public function create(){
+        return view('auth.create');
+    }
+
+    public function store(Request $request){
+        User::create([
+            "name" => $request -> name,
+            "email" => $request -> email,
+            "password" => $request -> password,
+            "phone"=> $request -> phone
+        ]);
+
+        return redirect()->route('contact'); 
+    }
+
+    public function edit(User $user){
+        return view('auth.edit', compact("user"));
+    }
+
+    public function update(Request $request, User $user){
+        $user->update([
+            "name"=>$request->name,
+            "email"=>$request->email,
+            "password"=>$request->password,
+            "phone"=>$request->phone
+        ]);
+
+        return redirect()->route('contact');
+    }
+
+    public function destroy(User $user){
+        $user->delete();
+        return redirect()->route('contact');
+    }
 }
 

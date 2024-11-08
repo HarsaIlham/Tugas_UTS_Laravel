@@ -8,6 +8,12 @@ Route::get('/', function() {
 });
 
 Route::get('/contact',[Contactcontroller::class, 'contact'])->name('contact');
+Route::get('/create',[Contactcontroller::class, 'create'])->name('create');
+Route::post('/create',[Contactcontroller::class, 'store'])->name('store-user');
+Route::get('/edit-user/{user}',[Contactcontroller::class, 'edit'])->name('edit-user');
+Route::put('/update-user/{user}',[Contactcontroller::class, 'update'])->name('update-user');
+Route::delete('/delete-user/{user}',[Contactcontroller::class, 'destroy'])->name('delete-user');
+
 
 
 Route::get('/login', function(){ 

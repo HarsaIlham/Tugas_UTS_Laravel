@@ -6,7 +6,7 @@
 
     <div class="h-screen bg-gradient-to-t from-teal-800 to-fuchsia-800 flex justify-center items-center">
         <div class="lg:w-2/5 md:w-1/2 w-2/3 mt-10">
-            <form id="regis" class="bg-gray-600 p-5 rounded-lg shadow-lg min-w-full">
+            <form action="{{ route('register') }}" method="POST" id="regis" class="bg-gray-600 p-5 rounded-lg shadow-lg min-w-full">
                 <div class="font-medium self-center text-xl sm:text-2xl uppercase text-white text-center">REGISTER</div>
                 <div class="relative mt-2 h-px bg-gray-300"></div>
                 <div>
